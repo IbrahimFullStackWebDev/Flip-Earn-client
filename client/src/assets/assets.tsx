@@ -35,10 +35,10 @@ export const socialMediaLinks = {
   discord: "https://discord.com/users",
 };
 
-export function getProfileLink(platform, username) {
+export function getProfileLink(platform: string, username: string) {
   if (!platform || !username) return null;
   const key = platform.toLowerCase();
-  const base = socialMediaLinks[key];
+  const base = socialMediaLinks[key as keyof typeof socialMediaLinks];
   if (!base) return null;
   const cleanUsername = username.startsWith("@") ? username.slice(1) : username;
   switch (key) {
@@ -55,7 +55,7 @@ export function getProfileLink(platform, username) {
   }
 }
 
-export const platformIcons = {
+export const platformIcons: object = {
   youtube: (
     <Youtube color="#FF0000" className="bg-[#FF000010] size-10 p-2 rounded" />
   ),
